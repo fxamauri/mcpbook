@@ -1,0 +1,35 @@
+{
+  "name": "@mcpbook/bitbucket-mcp-server",
+  "version": "0.0.1",
+  "private": true,
+  "description": "bitbucket-mcp-server MCP server",
+  "type": "module",
+  "bin": {
+    "bitbucket-mcp-server": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rm -rf dist && tsc && mcp-build && node -e \"require('fs').chmodSync('dist/index.js', '755')\"",
+    "dev": "pnpm run build && pnpm dlx @modelcontextprotocol/inspector dist/index.js",
+    "watch": "tsc --watch",
+    "start": "node dist/index.js",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint . --max-warnings 0"
+  },
+  "dependencies": {
+    "axios": "^1.8.4",
+    "mcp-framework": "^0.2.2"
+  },
+  "devDependencies": {
+    "@mcpbook/eslint-config": "workspace:*",
+    "@mcpbook/typescript-config": "workspace:*",
+    "@types/node": "^20.11.24",
+    "eslint": "^9.23.0",
+    "typescript": "^5.8.2"
+  },
+  "engines": {
+    "node": ">=18.19.0"
+  }
+}
